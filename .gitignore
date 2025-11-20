@@ -1,0 +1,6 @@
+project/
+resources/
+target/
+
+.bsp/
+.idea/
