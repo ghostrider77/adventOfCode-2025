@@ -26,4 +26,24 @@ class AoCSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+
+  "Day02" - {
+    "Part 1" - {
+      import Day02a.{IdRange, totalInvalidIDSum}
+
+      "should add all of the invalid IDs" - {
+        val ranges: List[IdRange] = List(IdRange(11, 22), IdRange(95, 115), IdRange(1188511880L, 1188511890L))
+        totalInvalidIDSum(ranges) shouldEqual 1188512017L
+      }
+    }
+
+    "Part 2" - {
+      import Day02b.{IdRange, totalInvalidIDSum}
+
+      "should add all of the invalid IDs" - {
+        val ranges: List[IdRange] = List(IdRange(11, 22), IdRange(95, 115), IdRange(1188511880L, 1188511890L))
+        totalInvalidIDSum(ranges) shouldEqual 1188512128L
+      }
+    }
+  }
 }
