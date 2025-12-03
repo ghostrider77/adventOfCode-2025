@@ -1,12 +1,9 @@
 object Day03b:
   import scala.annotation.tailrec
+  import scala.math.Ordering.Implicits.seqOrdering
   import scala.math.Ordered.orderingToOrdered
 
   type Pack = List[Int]
-
-  given packOrdering: Ordering[Pack] with
-    override def compare(p1: Pack, p2: Pack): Int =
-      p1.mkString.toLong.compareTo(p2.mkString.toLong)
 
   private def parseInput(line: String): Pack =
     line.toList.map(_.asDigit)
