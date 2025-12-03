@@ -12,8 +12,6 @@ object Day03b:
     line.toList.map(_.asDigit)
 
   private def getMaxJoltage(pack: Pack, size: Int): Long =
-    val (initial, rest): (Pack, Pack) = pack.reverse.splitAt(size)
-
     @tailrec
     def loop(acc: Pack, items: Pack): Long = items match
       case Nil => acc.mkString.toLong
@@ -23,6 +21,7 @@ object Day03b:
         if acc > candidate then loop(acc, xs)
         else loop(candidate, xs)
 
+    val (initial, rest): (Pack, Pack) = pack.reverse.splitAt(size)
     loop(initial.reverse, rest)
 
   def calcSumOfJoltages(packs: List[Pack], size: Int): Long =
