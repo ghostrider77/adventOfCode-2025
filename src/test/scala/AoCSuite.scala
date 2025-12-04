@@ -56,7 +56,7 @@ class AoCSuite extends AnyFreeSpec, Matchers {
     "Part 1" - {
       import Day03a.calcSumOfJoltages
 
-      "should calculate the total output joltage when 2 batteries are turned on" - {
+      "should calculate the total output joltage when 2 batteries are turned on" in {
         calcSumOfJoltages(packs) shouldEqual 357
       }
     }
@@ -64,8 +64,41 @@ class AoCSuite extends AnyFreeSpec, Matchers {
     "Part 2" - {
       import Day03b.calcSumOfJoltages
 
-      "should calculate the total output joltage when 12 batteries are turned on" - {
+      "should calculate the total output joltage when 12 batteries are turned on" in {
         calcSumOfJoltages(packs, 12) shouldEqual 3121910778619L
+      }
+    }
+  }
+
+  "Day04" - {
+    val cells: List[String] = List(
+      "..@@.@@@@.",
+      "@@@.@.@.@@",
+      "@@@@@.@.@@",
+      "@.@@@@..@.",
+      "@@.@@@@.@@",
+      ".@@@@@@@.@",
+      ".@.@.@.@@@",
+      "@.@@@.@@@@",
+      ".@@@@@@@@.",
+      "@.@.@@@.@."
+    )
+
+    "Part 1" - {
+      import Day04a.{Department, parseInput, countAccessableRolls}
+
+      "should calculate the number of rolls of paper that can be accessed by a forklift" in {
+        val data: Department = parseInput(cells)
+        countAccessableRolls(data) shouldEqual 13
+      }
+    }
+
+    "Part 2" - {
+      import Day04b.{Department, parseInput, countRemovableRolls}
+
+      "should calculate the number of rolls of paper that can be removed by a forklift iteratively" in {
+        val data: Department = parseInput(cells)
+        countRemovableRolls(data) shouldEqual 43
       }
     }
   }

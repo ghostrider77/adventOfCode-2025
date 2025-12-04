@@ -13,12 +13,9 @@ object Day04b:
   case class Coord(x: Int, y: Int)
 
   case class Department(rolls: Set[Coord], nrRows: Int, nrCols: Int):
-    private def isValid(coord: Coord): Boolean =
-      0 <= coord.x && coord.x < nrRows && 0 <= coord.y && coord.y < nrCols
-
     def getNumberOfRollNeighbors(coord: Coord): Int =
       val Coord(x, y) = coord
-      val neighborCoord: List[Coord] =
+      val neighborCoord: Iterator[Coord] =
         Iterator(
           Coord(x + 1, y - 1),
           Coord(x + 1, y),
@@ -28,7 +25,7 @@ object Day04b:
           Coord(x - 1, y),
           Coord(x - 1, y - 1),
           Coord(x, y - 1)
-        ).filter(isValid).toList
+        )
       neighborCoord.count(rolls.contains)
 
   def parseInput(lines: List[String]): Department = lines match
