@@ -102,4 +102,24 @@ class AoCSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+  "Day05" - {
+    "Part 1" - {
+      import Day05a.{IDRange, getNrOfFreshIDs}
+
+      "should calculate the number of fresh ingredient IDs" in {
+        val ranges: List[IDRange] = List(IDRange(3, 5), IDRange(10, 14), IDRange(16, 20), IDRange(12, 18))
+        val availableIDs: List[Long] = List(1, 5, 8, 11, 17, 32)
+        getNrOfFreshIDs(ranges, availableIDs) shouldEqual 3L
+      }
+    }
+
+    "Part 2" - {
+      import Day05b.{IDRange, getNrOfAllFreshIDs}
+
+      "should calculate the number of all possible fresh ingredient IDs" in {
+        val ranges: List[IDRange] = List(IDRange(3, 5), IDRange(10, 14), IDRange(16, 20), IDRange(12, 18))
+        getNrOfAllFreshIDs(ranges) shouldEqual 14L
+      }
+    }
+  }
 }
