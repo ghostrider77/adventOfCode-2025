@@ -21,7 +21,7 @@ object Day06b:
       case Nil => if operator == Add then 0L else 1L
       case hd :: tl => tl.foldLeft(hd)(operator)
 
-  def parseInput(lines: List[String]): List[MathProblem] =
+  private def parseInput(lines: List[String]): List[MathProblem] =
     @tailrec
     def loop(acc: List[MathProblem], ns: List[String], ops: List[Operation]): List[MathProblem] = (ns, ops) match
       case (Nil, Nil) => acc

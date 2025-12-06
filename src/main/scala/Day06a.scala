@@ -19,7 +19,7 @@ object Day06a:
       case Nil => if operator == Add then 0L else 1L
       case hd :: tl => tl.foldLeft(hd)(operator)
 
-  def parseInput(lines: List[String]): List[MathProblem] =
+  private def parseInput(lines: List[String]): List[MathProblem] =
     def readProblem(items: List[String]): MathProblem =
       MathProblem(items.init.map(_.toLong), Operation(items.last))
 
