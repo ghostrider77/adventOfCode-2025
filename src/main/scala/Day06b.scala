@@ -13,14 +13,9 @@ object Day06b:
       case _ => throw Exception(s"Unknown operator $s.")
 
   case class MathProblem(numbers: List[Long], operation: Operation):
-    private val operator: (Long, Long) => Long = operation match
-      case Add => _ + _
-      case Mul => _ * _
-
-    val value: Long = (numbers, operation) match
-      case (Nil, Add) => 0L
-      case (Nil, Mul) => 1L
-      case (hd :: tl, _) => tl.foldLeft(hd)(operator)
+    val value: Long = operation match
+      case Add => numbers.foldLeft(0L)(_ + _)
+      case Mul => numbers.foldLeft(1L)(_ * _)
 
   private def parseInput(lines: List[String]): List[MathProblem] =
     @tailrec
