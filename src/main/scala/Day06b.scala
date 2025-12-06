@@ -17,9 +17,10 @@ object Day06b:
       case Add => _ + _
       case Mul => _ * _
 
-    val value: Long = numbers match
-      case Nil => if operator == Add then 0L else 1L
-      case hd :: tl => tl.foldLeft(hd)(operator)
+    val value: Long = (numbers, operation) match
+      case (Nil, Add) => 0L
+      case (Nil, Mul) => 1L
+      case (hd :: tl, _) => tl.foldLeft(hd)(operator)
 
   private def parseInput(lines: List[String]): List[MathProblem] =
     @tailrec
