@@ -102,6 +102,7 @@ class AoCSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+
   "Day05" - {
     "Part 1" - {
       import Day05a.{IDRange, getNrOfFreshIDs}
@@ -120,6 +121,20 @@ class AoCSuite extends AnyFreeSpec, Matchers {
         val ranges: List[IDRange] = List(IDRange(3, 5), IDRange(10, 14), IDRange(16, 20), IDRange(12, 18))
         getNrOfAllFreshIDs(ranges) shouldEqual 14L
       }
+    }
+  }
+
+  "Day06" - {
+    import Day06a.{MathProblem, Operation, calcGrandTotal}
+
+    "should calculate the grand total found by adding together all of the answers to the individual problems" in {
+      val problems: List[MathProblem] = List(
+        MathProblem(List(123, 45, 6), Operation.Mul),
+        MathProblem(List(328, 64, 98), Operation.Add),
+        MathProblem(List(51, 387, 215), Operation.Mul),
+        MathProblem(List(64, 23, 314), Operation.Add),
+      )
+      calcGrandTotal(problems) shouldEqual 4277556L
     }
   }
 }
