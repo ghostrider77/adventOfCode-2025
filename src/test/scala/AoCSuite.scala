@@ -132,9 +132,56 @@ class AoCSuite extends AnyFreeSpec, Matchers {
         MathProblem(List(123, 45, 6), Operation.Mul),
         MathProblem(List(328, 64, 98), Operation.Add),
         MathProblem(List(51, 387, 215), Operation.Mul),
-        MathProblem(List(64, 23, 314), Operation.Add),
+        MathProblem(List(64, 23, 314), Operation.Add)
       )
       calcGrandTotal(problems) shouldEqual 4277556L
+    }
+  }
+
+  "Day07" - {
+    val splitterCoords: Set[(Int, Int)] = Set(
+      (2, 7),
+      (4, 6),
+      (4, 8),
+      (6, 5),
+      (6, 7),
+      (6, 9),
+      (8, 4),
+      (8, 6),
+      (8, 10),
+      (10, 3),
+      (10, 5),
+      (10, 9),
+      (10, 11),
+      (12, 2),
+      (12, 6),
+      (12, 12),
+      (14, 1),
+      (14, 3),
+      (14, 5),
+      (14, 7),
+      (14, 9),
+      (14, 13)
+    )
+
+    "Part 1" - {
+      import Day07a.{Coord, Manifold, getNrOfsplits}
+
+      "should calculate the number of times the beam is split" in {
+        val splitters: Set[Coord] = splitterCoords.map(Coord(_, _))
+        val manifold = Manifold(start = Coord(0, 7), splitters = splitters, nrRows = 16, nrCols = 15)
+        getNrOfsplits(manifold) shouldEqual 21
+      }
+    }
+
+    "Part 2" - {
+      import Day07b.{Coord, Manifold, getNrOfParticlePaths}
+
+      "should calculate the number of all paths that a particle can traverse" in {
+        val splitters: Set[Coord] = splitterCoords.map(Coord(_, _))
+        val manifold = Manifold(start = Coord(0, 7), splitters = splitters, nrRows = 16, nrCols = 15)
+        getNrOfParticlePaths(manifold) shouldEqual 40L
+      }
     }
   }
 }
