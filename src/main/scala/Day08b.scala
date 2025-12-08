@@ -48,7 +48,7 @@ object Day08b:
   def createSingleCluster(positions: List[Coord]): Long =
     val nrPoints: Int = positions.length
     val distances: List[(Int, Int, Double)] = calcDistancePairs(positions)
-    val circuits = new UnionFind(nrPoints)
+    val circuits = UnionFind(nrPoints)
 
     @tailrec
     def loop(nrClusters: Int, ds: List[(Int, Int, Double)]): Long = ds match
@@ -56,7 +56,7 @@ object Day08b:
       case (ixP, ixQ, dist) :: rest =>
         val clusterOfP: Int = circuits.find(ixP)
         val clusterOfQ: Int = circuits.find(ixQ)
-        if (clusterOfP == clusterOfQ) loop(nrClusters, rest)
+        if clusterOfP == clusterOfQ then loop(nrClusters, rest)
         else
           circuits.union(clusterOfP, clusterOfQ)
           if nrClusters == 2 then

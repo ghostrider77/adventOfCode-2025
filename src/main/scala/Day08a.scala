@@ -53,7 +53,7 @@ object Day08a:
     (0 until k).map(_ => heap.dequeue()).toList
 
   private def calcGroupSizes(nrPositions: Int, pairs: List[(Int, Int, Double)]): List[Int] =
-    val circuits: UnionFind = new UnionFind(nrPositions)
+    val circuits: UnionFind = UnionFind(nrPositions)
     pairs.foreach { (p, q, _) =>
       val groupOfP: Int = circuits.find(p)
       val groupOfQ: Int = circuits.find(q)
