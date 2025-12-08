@@ -217,5 +217,14 @@ class AoCSuite extends AnyFreeSpec, Matchers {
         calcClusterSizeProduct(coords, k = 10) shouldEqual 40
       }
     }
+
+    "Part 2" - {
+      import Day08b.{Coord, createSingleCluster}
+
+      "should calculate the product of the x coordinates of the points that close the circuit" in {
+        val coords: List[Coord] = positions.map(Coord(_, _, _))
+        createSingleCluster(coords) shouldEqual 25272L
+      }
+    }
   }
 }
