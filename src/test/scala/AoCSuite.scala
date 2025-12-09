@@ -234,9 +234,18 @@ class AoCSuite extends AnyFreeSpec, Matchers {
     "Part 1" - {
       import Day09a.{Coord, calcLargestArea}
 
-      "should calculate the largest area of any rectangle one can make by selecting the oppositce corners" in {
+      "should calculate the largest area of any rectangle one can make by selecting the opposite corners" in {
         val coords: List[Coord] = positions.map(Coord(_, _))
         calcLargestArea(coords) shouldEqual 50
+      }
+    }
+
+    "Part 2" - {
+      import Day09b.{Coord, calcLargestAreaInsidePolygon}
+
+      "should calculate the largest area of any rectangle inside the polygon by selecting the opposite corners" in {
+        val coords: List[Coord] = positions.map(Coord(_, _))
+        calcLargestAreaInsidePolygon(coords) shouldEqual 24
       }
     }
   }
