@@ -22,9 +22,8 @@ object Day09b:
       .combinations(2)
       .collect { case List(Coord(x1, y1), Coord(x2, y2)) => (Coord(x1 min x2, y1 min y2), Coord(x1 max x2, y1 max y2)) }
       .foldLeft(0L) { case (acc, (c1 @ Coord(x, y), c2 @ Coord(u, v))) =>
-        val a: Long = area(c1, c2)
         if sides.exists { case (Coord(a, b), Coord(c, d)) => a < u && b < v && c > x && d > y } then acc
-        else acc max a
+        else acc max area(c1, c2)
       }
 
   def main(args: Array[String]): Unit =
