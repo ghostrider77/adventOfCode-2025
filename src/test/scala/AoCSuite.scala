@@ -285,4 +285,52 @@ class AoCSuite extends AnyFreeSpec, Matchers {
         }
     }
   }
+
+  "Day11" - {
+
+    "Part 1" - {
+      import Day11a.DirectedGraph
+
+      "should calculate the number of different paths lead from you to out" in {
+        val adjacencyList: Map[String, List[String]] = Map(
+          "aaa" -> List("you", "hhh"),
+          "you" -> List("bbb", "ccc"),
+          "bbb" -> List("ddd", "eee"),
+          "ccc" -> List("ddd", "eee", "fff"),
+          "ddd" -> List("ggg"),
+          "eee" -> List("out"),
+          "fff" -> List("out"),
+          "ggg" -> List("out"),
+          "hhh" -> List("ccc", "fff", "iii"),
+          "iii" -> List("out")
+        )
+        val graph = DirectedGraph(adjacencyList, startNode = "you", endNode = "out")
+        graph.nrPaths shouldEqual 5
+      }
+    }
+
+    "Part 2" - {
+      import Day11b.{DirectedGraph, findNumberOfPaths}
+
+      "should calculate the number of different paths lead from svr to out via fft and dac" in {
+        val adjacencyList: Map[String, List[String]] = Map(
+          "svr" -> List("aaa", "bbb"),
+          "aaa" -> List("fft"),
+          "fft" -> List("ccc"),
+          "bbb" -> List("tty"),
+          "tty" -> List("ccc"),
+          "ccc" -> List("ddd", "eee"),
+          "ddd" -> List("hub"),
+          "hub" -> List("fff"),
+          "eee" -> List("dac"),
+          "dac" -> List("fff"),
+          "fff" -> List("ggg", "hhh"),
+          "ggg" -> List("out"),
+          "hhh" -> List("out")
+        )
+        val graph = DirectedGraph(adjacencyList)
+        findNumberOfPaths(graph) shouldEqual 2L
+      }
+    }
+  }
 }
