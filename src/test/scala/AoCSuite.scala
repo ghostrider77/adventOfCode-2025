@@ -268,9 +268,21 @@ class AoCSuite extends AnyFreeSpec, Matchers {
 
       "should calculate the fewest button presses required to correctly configure the indicator lights on " +
         "all of the machines" in {
-        val configs: List[MachineConfig] = states.zip(buttons).map(MachineConfig(_, _))
-        calcSumOfshortestPaths(configs) shouldEqual 7
-      }
+          val configs: List[MachineConfig] = states.zip(buttons).map(MachineConfig(_, _))
+          calcSumOfshortestPaths(configs) shouldEqual 7
+        }
+    }
+
+    "Part 2" - {
+      import Day10b.{MachineConfig, calcSumOfshortestPaths}
+
+      val levels: List[List[Int]] = List(List(3, 5, 4, 7), List(7, 5, 12, 7, 2), List(10, 11, 11, 5, 10, 5))
+
+      "should calculate the fewest button presses required to correctly configure the joltage level counters on " +
+        "all of the machines" in {
+          val configs: List[MachineConfig] = buttons.zip(levels).map(MachineConfig(_, _))
+          calcSumOfshortestPaths(configs) shouldEqual 33
+        }
     }
   }
 }
