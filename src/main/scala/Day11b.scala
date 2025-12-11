@@ -3,7 +3,7 @@ import scala.annotation.tailrec
 object Day11b:
   import scala.collection.mutable.Queue as MutableQueue
 
-  case class DirectedGraph(adjacencyList: Map[String, List[String]]):
+  class DirectedGraph(adjacencyList: Map[String, List[String]]):
     private val reversedEdges: Map[String, List[String]] =
       (for {
         (node, neighbors) <- adjacencyList.toList

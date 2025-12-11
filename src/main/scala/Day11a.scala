@@ -1,5 +1,5 @@
 object Day11a:
-  case class DirectedGraph(adjacencyList: Map[String, List[String]], startNode: String, endNode: String):
+  class DirectedGraph(adjacencyList: Map[String, List[String]], startNode: String, endNode: String):
     private def findAllPaths(v: String): List[List[String]] =
       if v == endNode then List(List(v))
       else
