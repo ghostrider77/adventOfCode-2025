@@ -1,13 +1,13 @@
 object Day11a:
   class DirectedGraph(adjacencyList: Map[String, List[String]], startNode: String, endNode: String):
-    private def findAllPaths(v: String): List[List[String]] =
-      if v == endNode then List(List(v))
+    private def countAllPaths(v: String): Int =
+      if v == endNode then 1
       else
         val neighbors: List[String] = adjacencyList.getOrElse(v, Nil)
-        neighbors.flatMap(n => findAllPaths(n)).map(v :: _)
+        neighbors.foldLeft(0)((acc, n) => acc + countAllPaths(n))
 
     def nrPaths: Int =
-      findAllPaths(startNode).length
+      countAllPaths(startNode)
 
   def parseInput(lines: List[String]): DirectedGraph =
     def parseLine(line: String): (String, List[String]) = line match

@@ -25,16 +25,16 @@ object Day11b:
 
       loop(Set(node))
 
-    def findAllPaths(startNode: String, targetNode: String): List[List[String]] =
+    def countAllPaths(startNode: String, targetNode: String): Long =
       val nodesThatCanReachTarget: Set[String] = canReachNode(targetNode)
 
-      def extendFrom(v: String): List[List[String]] =
-        if v == targetNode then List(List(targetNode))
+      def extendFrom(v: String): Long =
+        if v == targetNode then 1L
         else
           val neighbors: List[String] = adjacencyList.getOrElse(v, Nil)
-          neighbors.filter(nodesThatCanReachTarget.contains).flatMap(n => extendFrom(n)).map(v :: _)
+          neighbors.filter(nodesThatCanReachTarget.contains).foldLeft(0L)((acc, n) => acc + extendFrom(n))
 
-      if !nodesThatCanReachTarget.contains(startNode) then Nil
+      if !nodesThatCanReachTarget.contains(startNode) then 0L
       else extendFrom(startNode)
 
   def parseInput(lines: List[String]): DirectedGraph =
@@ -46,9 +46,9 @@ object Day11b:
 
   def findNumberOfPaths(graph: DirectedGraph): Long =
     // There is no directed path from dac to fft
-    val svrToFft: Long = graph.findAllPaths("svr", "fft").length
-    val fftToDac: Long = graph.findAllPaths("fft", "dac").length
-    val dacToOut: Long = graph.findAllPaths("dac", "out").length
+    val svrToFft: Long = graph.countAllPaths("svr", "fft")
+    val fftToDac: Long = graph.countAllPaths("fft", "dac")
+    val dacToOut: Long = graph.countAllPaths("dac", "out")
     svrToFft * fftToDac * dacToOut
 
   def main(args: Array[String]): Unit =
